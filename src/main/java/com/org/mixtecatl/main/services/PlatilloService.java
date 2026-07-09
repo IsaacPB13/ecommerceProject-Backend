@@ -5,12 +5,13 @@ import com.org.mixtecatl.main.respositories.PlatilloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PlatilloService {
 
-    private PlatilloRepository platilloRepository;
+    private final PlatilloRepository platilloRepository;
 
     @Autowired
     public PlatilloService(PlatilloRepository repository){
@@ -28,10 +29,10 @@ public class PlatilloService {
     public Platillo actualizarPlatillo(Long idPlatillo, String Nombre_Platillo, String Categoria, String imagen, Double precio) {
         Platillo platillo = null;
 
-        if( platilloRepository.existsById(IdPlatillo) ){
-            platillo = platilloRepository.findById(IdPlatillo).get();
+        if( platilloRepository.existsById(idPlatillo) ){
+            platillo = platilloRepository.findById(idPlatillo).get();
 
-            if(Nombre_Platillo != null) platillo.setNombre_Platillo(Nombre_Platillo);
+            if(Nombre_Platillo != null) platillo.setNombre_platillo(Nombre_Platillo);
             if(Categoria != null) platillo.setCategoria(Categoria);
             if(imagen != null) platillo.setImagen(imagen);
             if(precio != null) platillo.setPrecio(precio);
@@ -40,4 +41,22 @@ public class PlatilloService {
         }
         return platillo;
     }//actualizarPlatillo
+
+    public Platillo getPlatillo(Long id) {
+
+        return platilloRepository.findById(id).
+                orElseThrow( () -> new IllegalArgumentException("El platillo con el id ["+id+"] no existe") );
+    }
+
+    public Platillo deletePlatillo(Long id) {
+
+        Platillo platillo = null;
+        if(platilloRepository.existsById(id)){
+
+            platillo = platilloRepository.findById(id).get();
+            platilloRepository.deleteById(id);
+        }
+
+        return platillo;
+    }
 }
