@@ -1,68 +1,74 @@
 package com.org.mixtecatl.main.models;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "Usuario")
 public class Usuario {
 
-    private Long idUsuario;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "usuarioId", unique = true, nullable = false)
+    private Long usuarioId;
+
+    @Column(name = "Nombre", nullable = false)
     private String nombre;
+
+    @Column(name = "Correo", nullable = false)
     private String correo;
+
+    @Column(name = "Contraseña", nullable = false)
     private String password;
+
+    @Column(name = "Telefono", nullable = false)
     private String telefono;
-    private Date fechaRegistro;
 
-    public Usuario(Long idUsuario, String nombre, String correo,
-                   String password, String telefono, Date fechaRegistro) {
+    public Usuario(){}// Constructor vacío
 
-        this.idUsuario = idUsuario;
+    public Usuario(String nombre, String correo,
+                   String password, String telefono) {
+
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
         this.telefono = telefono;
-        this.fechaRegistro = fechaRegistro;
-    }// Usuario
 
-    public Long getIdUsuario() {
-        return idUsuario;
-    }// get
+    }// Constructor Usuario
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }// getUsuarioId
 
     public String getNombre() {
         return nombre;
-    }
+    }// getNombre
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
+    }// setNombre
 
     public String getCorreo() {
         return correo;
-    }
+    }// getCorreo
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
+    }// setCorreo
 
     public String getPassword() {
         return password;
-    }
+    }// getPassword
 
     public void setPassword(String password) {
         this.password = password;
-    }
+    }// setPassword
 
     public String getTelefono() {
         return telefono;
-    }
+    }// getTelefono
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
+    }// setTelefono
 
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
 }// Class Usuario
