@@ -1,52 +1,87 @@
 package com.org.mixtecatl.main.models;
-
+import jakarta.persistence.*;
 import java.util.Date;
-import java.util.List;
 
+
+@Entity
+@Table (name= "Pedido")
 public class Pedido {
-  private Long idCliente;
-  private Long idPedido;
-  private List<Long> platillos;
-  private Date fecha;
-  private Boolean EstadoPedido;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPedido")
+    private Long idPedido;
 
-    public Pedido(Long idCliente, Long idPedido, List<Long> platillos, Date fecha, Boolean estadoPedido) {
-        this.idCliente = idCliente;
-        this.idPedido = idPedido;
-        this.platillos = platillos;
-        this.fecha = fecha;
-        EstadoPedido = estadoPedido;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "Fecha_Solicitud",nullable = false)
+    private Date fechaSolicitud;
 
-    //getter
-    public Long getIdCliente() {return idCliente;}
-    public Long getIdPedido() {return idPedido;}
-    public List<Long> getPlatillos() {return platillos;}
-    public Date getFecha() {return fecha;}
-    public Boolean getEstadoPedido() {return EstadoPedido;}
+    @Column(name = "Estado_Pedido",nullable = false)
+    private String estadoPedido;
 
-    //Setter
+    @Column(name = "Platillo_idPlatillo",nullable = false)
+    private Long platillo;
 
+    @Column(name = "Usuario_idUsuario", nullable = false)
+    private Long usuario;
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
-    }
+    public Pedido(Date fechaSolicitud, String estadoPedido, Long platillo, Long usuario) {
+        this.fechaSolicitud = fechaSolicitud;
+        this.estadoPedido = estadoPedido;
+        this.platillo = platillo;
+        this.usuario = usuario;
+    }//constructorPedido
+
+    public Pedido(){}//requerimento JPA (Constuctor Vacio)
+
+    public Long getIdPedido() {
+        return idPedido;
+    }//getIdPedido
 
     public void setIdPedido(Long idPedido) {
         this.idPedido = idPedido;
-    }
+    }//setIdPedido
 
-    public void setPlatillos(List<Long> platillos) {
-        this.platillos = platillos;
-    }
+    public Date getFechaSolicitud() {
+        return fechaSolicitud;
+    }//get FechaSolicitud
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+    public void setFechaSolicitud(Date fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
+    }//setFechaSolicitud
 
-    public void setEstadoPedido(Boolean estadoPedido) {
-        EstadoPedido = estadoPedido;
-    }
+    public String getEstadoPedido() {
+        return estadoPedido;
+    }//getEstadoPedido
 
+    public void setEstadoPedido(String estadoPedido) {
+        this.estadoPedido = estadoPedido;
+    }//setEstadoPedido
 
-}
+    public Long getPlatillo() {
+        return platillo;
+    }//getPlatillo
+
+    public void setPlatillo(Long platillo) {
+        this.platillo = platillo;
+    }//setUsuario
+
+    public Long getUsuario() {
+        return usuario;
+    }//getUsuario
+
+    public void setUsuario(Long usuario) {
+        this.usuario = usuario;
+    }//setUsuario
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "idPedido=" + idPedido +
+                ", fechaSolicitud=" + fechaSolicitud +
+                ", estadoPedido='" + estadoPedido + '\'' +
+                ", platillo=" + platillo +
+                ", usuario=" + usuario +
+                '}';
+    }//toString
+}//class Pedido
+
