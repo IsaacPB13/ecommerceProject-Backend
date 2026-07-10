@@ -3,24 +3,24 @@ package com.org.mixtecatl.main.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuarioId", unique = true, nullable = false)
-    private Long usuarioId;
+    @Column(name = "idUsuario", unique = true, nullable = false)
+    private Long idUsuario;
 
-    @Column(name = "Nombre", nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "Correo", nullable = false)
+    @Column(name = "correo", nullable = false)
     private String correo;
 
-    @Column(name = "Contraseña", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "Telefono", nullable = false)
+    @Column(name = "telefono", nullable = false)
     private String telefono;
 
     public Usuario(){}// Constructor vacío
@@ -35,9 +35,13 @@ public class Usuario {
 
     }// Constructor Usuario
 
-    public Long getUsuarioId() {
-        return usuarioId;
-    }// getUsuarioId
+    public Long getIdUsuario() {
+        return idUsuario;
+    }// getIdUsuario
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }// setIdUsuario
 
     public String getNombre() {
         return nombre;
@@ -71,4 +75,13 @@ public class Usuario {
         this.telefono = telefono;
     }// setTelefono
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
+    }// toString
 }// Class Usuario
