@@ -26,14 +26,14 @@ public class PlatilloService {
         return platilloRepository.save(platillo);
     }//crearPlatillo
 
-    public Platillo actualizarPlatillo(Long idPlatillo, String Nombre_Platillo, String Categoria, String imagen, Double precio) {
+    public Platillo actualizarPlatillo(Long idPlatillo, String nombrePlatillo, String categoria, Double precio, String imagen) {
         Platillo platillo = null;
 
         if( platilloRepository.existsById(idPlatillo) ){
             platillo = platilloRepository.findById(idPlatillo).get();
 
-            if(Nombre_Platillo != null) platillo.setNombrePlatillo(Nombre_Platillo);
-            if(Categoria != null) platillo.setCategoria(Categoria);
+            if(nombrePlatillo != null) platillo.setNombrePlatillo(nombrePlatillo);
+            if(categoria != null) platillo.setCategoria(categoria);
             if(imagen != null) platillo.setImagen(imagen);
             if(precio != null) platillo.setPrecio(precio);
 
