@@ -32,7 +32,7 @@ public class PlatilloService {
         if( platilloRepository.existsById(idPlatillo) ){
             platillo = platilloRepository.findById(idPlatillo).get();
 
-            if(Nombre_Platillo != null) platillo.setNombre_platillo(Nombre_Platillo);
+            if(Nombre_Platillo != null) platillo.setNombrePlatillo(Nombre_Platillo);
             if(Categoria != null) platillo.setCategoria(Categoria);
             if(imagen != null) platillo.setImagen(imagen);
             if(precio != null) platillo.setPrecio(precio);

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/api/platillos/")// http://localhost:8080/api/platillos/
+@RequestMapping(path="/mixapi/platillos/")// http://localhost:8080/api/platillos/
 public class PlatilloController {
 
     private final PlatilloService platilloService;
@@ -29,25 +29,25 @@ public class PlatilloController {
         return platilloService.getPlatillos();
     }
 
-    @GetMapping(path="{productoId}")
-    public Platillo getPlatillo(@PathVariable("IdPlatillo") Long id){
+    @GetMapping(path="{idPlatillo}")
+    public Platillo getPlatillo(@PathVariable("idPlatillo") Long id){
 
         return platilloService.getPlatillo(id);
     }
 
-    @DeleteMapping(path="{productoId}")
-    public Platillo deletePlatillo(@PathVariable("IdPlatillo") Long id){
+    @DeleteMapping(path="{idPlatillo}")
+    public Platillo deletePlatillo(@PathVariable("idPlatillo") Long id){
 
         return platilloService.deletePlatillo(id);
     }
 
 
-    @PutMapping(path="/{IdPlatillo}")// http://localhost:8080/api/productos/{IdPlatillo}
-    public Platillo actualizarPlatillo(@PathVariable("IdPlatillo") Long id,
-                                       @RequestParam(value = "Nombre_platillo", required = false)String Nombre_platillo,
-                                       @RequestParam(value = "Categoria", required = false)String Categoria,
+    @PutMapping(path="/{idPlatillo}")// http://localhost:8080/mixapi/productos/{idPlatillo}
+    public Platillo actualizarPlatillo(@PathVariable("idPlatillo") Long id,
+                                       @RequestParam(value = "nombrePlatillo", required = false)String nombrePlatillo,
+                                       @RequestParam(value = "categoria", required = false)String categoria,
                                        @RequestParam(value = "imagen", required = false)String imagen,
                                        @RequestParam(value = "precio", required = false)Double precio){
-        return platilloService.actualizarPlatillo(id, Nombre_platillo, Categoria, imagen, precio);
+        return platilloService.actualizarPlatillo(id, nombrePlatillo, categoria, imagen, precio);
     }//actualizarPlatillo
 }

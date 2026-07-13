@@ -3,86 +3,84 @@ package com.org.mixtecatl.main.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Platillo")
+@Table(name="platillo")
 public class Platillo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idPlatillo", unique=true, nullable = false)
-    private Long IdPlatillo;
+    private Long idPlatillo;
 
+    @Column(name="nombrePlatillo", nullable = false)
+    private String nombrePlatillo;
 
+    @Column(name="categoria", nullable = false)
+    private String categoria;
 
-    @Column(name="Nombre_platillo", nullable = false)
-    private String Nombre_platillo;
+    @Column(name="precio", nullable = false)
+    private Double precio;
 
-    @Column(name="Categoria", nullable = false)
-    private String Categoria;
-
-    @Column(name="Imagen", nullable = false)
-    private String Imagen;
-
-    @Column(name="Precio", nullable = false)
-    private Double Precio;
+    @Column(name="imagen", nullable = false)
+    private String imagen;
 
 
     public Platillo(){}
 
-    public String getNombre_platillo() {
-        return Nombre_platillo;
+    public String getNombrePlatillo() {
+        return nombrePlatillo;
     }
 
-    public void setNombre_platillo(String nombre_platillo) {
-        Nombre_platillo = nombre_platillo;
+    public void setNombrePlatillo(String nombrePlatillo) {
+        this.nombrePlatillo = nombrePlatillo;
     }
 
     public Long getIdPlatillo() {
-        return IdPlatillo;
+        return idPlatillo;
     }
 
-    public void setIdPlatillo(Long IdPlatillo) {
-        this.IdPlatillo = IdPlatillo;
+    public void setIdPlatillo(Long idPlatillo) {
+        this.idPlatillo = idPlatillo;
     }
 
     public String getCategoria() {
-        return Categoria;
+        return categoria;
     }
 
     public void setCategoria(String categoria) {
-        Categoria = categoria;
+        this.categoria = categoria;
     }
 
     public String getImagen() {
-        return Imagen;
+        return imagen;
     }
 
     public void setImagen(String imagen) {
-        Imagen = imagen;
+        this.imagen = imagen;
     }
 
     public Double getPrecio() {
-        return Precio;
+        return precio;
     }
 
     public void setPrecio(Double precio) {
-        Precio = precio;
+        this.precio = precio;
     }
 
 
-    public Platillo(String Nombre_platillo, String Categoria, String Imagen, Double Precio) {
-        this.Nombre_platillo = Nombre_platillo;
-        this.Categoria = Categoria;
-        this.Imagen = Imagen;
-        this.Precio = Precio;
+    public Platillo(String nombrePlatillo, String categoria, Double precio, String imagen) {
+        this.nombrePlatillo = nombrePlatillo;
+        this.categoria = categoria;
+        this.imagen = imagen;
+        this.precio = precio;
     }
 
     @java.lang.Override
     public java.lang.String toString() {
         return "Platillo{" +
-                "IdPlatillo=" + IdPlatillo +
-                ", Nombre_platillo='" + Nombre_platillo + '\'' +
-                ", Categoria='" + Categoria + '\'' +
-                ", Imagen='" + Imagen + '\'' +
-                ", Precio=" + Precio +
+                "idPlatillo=" + idPlatillo +
+                ", nombrePlatillo='" + nombrePlatillo + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", imagen='" + imagen + '\'' +
+                ", precio=" + precio +
                 '}';
     }
 }
