@@ -48,6 +48,6 @@ public class PlatilloController {
                                        @RequestParam(value = "categoria", required = false)String categoria,
                                        @RequestParam(value = "imagen", required = false)String imagen,
                                        @RequestParam(value = "precio", required = false)Double precio){
-        return platilloService.actualizarPlatillo(id, nombrePlatillo, categoria, imagen, precio);
+        return platilloService.actualizarPlatillo(id, nombrePlatillo, categoria, precio, imagen);
     }//actualizarPlatillo
 }

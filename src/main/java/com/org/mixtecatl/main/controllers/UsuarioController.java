@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api/usuarios/")
+@RequestMapping(path = "/mixapi/usuarios/")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;

@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/pedidos")
+@RequestMapping("/mixapi/pedidos/")
 @CrossOrigin(origins = "*")
 public class PedidoController {
 
