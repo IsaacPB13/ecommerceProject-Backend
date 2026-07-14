@@ -2,9 +2,8 @@ package com.org.mixtecatl.main.models;
 import jakarta.persistence.*;
 import java.util.Date;
 
-
 @Entity
-@Table (name= "Pedido")
+@Table (name= "pedidos")
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,22 +11,18 @@ public class Pedido {
     private Long idPedido;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "Fecha_Solicitud",nullable = false)
+    @Column(name = "fechaSolicitud",nullable = false)
     private Date fechaSolicitud;
 
-    @Column(name = "Estado_Pedido",nullable = false)
+    @Column(name = "estadoPedido",nullable = false)
     private String estadoPedido;
 
-    @Column(name = "Platillo_idPlatillo",nullable = false)
-    private Long platillo;
-
-    @Column(name = "Usuario_idUsuario", nullable = false)
+    @Column(name = "usuario_idUsuario", nullable = false)
     private Long usuario;
 
-    public Pedido(Date fechaSolicitud, String estadoPedido, Long platillo, Long usuario) {
+    public Pedido(Date fechaSolicitud, String estadoPedido, Long usuario) {
         this.fechaSolicitud = fechaSolicitud;
         this.estadoPedido = estadoPedido;
-        this.platillo = platillo;
         this.usuario = usuario;
     }//constructorPedido
 
@@ -57,14 +52,6 @@ public class Pedido {
         this.estadoPedido = estadoPedido;
     }//setEstadoPedido
 
-    public Long getPlatillo() {
-        return platillo;
-    }//getPlatillo
-
-    public void setPlatillo(Long platillo) {
-        this.platillo = platillo;
-    }//setUsuario
-
     public Long getUsuario() {
         return usuario;
     }//getUsuario
@@ -79,7 +66,6 @@ public class Pedido {
                 "idPedido=" + idPedido +
                 ", fechaSolicitud=" + fechaSolicitud +
                 ", estadoPedido='" + estadoPedido + '\'' +
-                ", platillo=" + platillo +
                 ", usuario=" + usuario +
                 '}';
     }//toString
