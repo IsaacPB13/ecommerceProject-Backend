@@ -44,7 +44,6 @@ public class PedidoService {
 
             pedido.setFechaSolicitud(pedidoActualizado.getFechaSolicitud());
             pedido.setEstadoPedido(pedidoActualizado.getEstadoPedido());
-            pedido.setPlatillo(pedidoActualizado.getPlatillo());
             pedido.setUsuario(pedidoActualizado.getUsuario());
 
             return pedidoRepository.save(pedido);
