@@ -25,17 +25,21 @@ public class Platillo {
     @Column(name="imagen", nullable = false)
     private String imagen;
 
+    @Column(name="imagen", nullable = false)
+    private String descripcion;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "platillo")
     private List<DetallePedido> detalles;
 
     public Platillo(){}
 
-    public Platillo(String nombrePlatillo, String categoria, Double precio, String imagen) {
+    public Platillo(String nombrePlatillo, String categoria, Double precio, String imagen, String descripcion) {
         this.nombrePlatillo = nombrePlatillo;
         this.categoria = categoria;
         this.imagen = imagen;
         this.precio = precio;
+        this.descripcion = descripcion;
     }
 
     public String getNombrePlatillo() {
@@ -86,6 +90,14 @@ public class Platillo {
         this.detalles = detalles;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
         return "Platillo{" +
@@ -94,6 +106,7 @@ public class Platillo {
                 ", categoria='" + categoria + '\'' +
                 ", precio=" + precio +
                 ", imagen='" + imagen + '\'' +
+                ", descripcion='" + descripcion + '\'' +
                 ", detalles=" + detalles +
                 '}';
     }
