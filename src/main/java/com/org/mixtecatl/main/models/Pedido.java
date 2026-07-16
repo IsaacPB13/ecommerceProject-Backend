@@ -1,4 +1,6 @@
 package com.org.mixtecatl.main.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.Date;
 
@@ -17,13 +19,18 @@ public class Pedido {
     @Column(name = "estadoPedido",nullable = false)
     private String estadoPedido;
 
-    @Column(name = "usuario_idUsuario", nullable = false)
-    private Long usuario;
+    @JsonManagedReference
+    @OneToOne(mappedBy = "pedidos")
+    private DetallePedido detallePedido;
 
-    public Pedido(Date fechaSolicitud, String estadoPedido, Long usuario) {
+    @JsonBackReference
+    @ManyToOne //relacion uno a muchos invertida
+    @JoinColumn(name="idUsuario") //referencia de la FK
+    private Usuario usuario;
+
+    public Pedido(Date fechaSolicitud, String estadoPedido) {
         this.fechaSolicitud = fechaSolicitud;
         this.estadoPedido = estadoPedido;
-        this.usuario = usuario;
     }//constructorPedido
 
     public Pedido(){}//requerimento JPA (Constuctor Vacio)
@@ -52,13 +59,21 @@ public class Pedido {
         this.estadoPedido = estadoPedido;
     }//setEstadoPedido
 
-    public Long getUsuario() {
-        return usuario;
-    }//getUsuario
+    public DetallePedido getDetallePedido() {
+        return detallePedido;
+    }
 
-    public void setUsuario(Long usuario) {
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setDetallePedido(DetallePedido detallePedido) {
+        this.detallePedido = detallePedido;
+    }
+
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }//setUsuario
+    }
 
     @Override
     public String toString() {
@@ -66,8 +81,9 @@ public class Pedido {
                 "idPedido=" + idPedido +
                 ", fechaSolicitud=" + fechaSolicitud +
                 ", estadoPedido='" + estadoPedido + '\'' +
+                ", detallePedido=" + detallePedido +
                 ", usuario=" + usuario +
                 '}';
-    }//toString
+    }
 }//class Pedido
 

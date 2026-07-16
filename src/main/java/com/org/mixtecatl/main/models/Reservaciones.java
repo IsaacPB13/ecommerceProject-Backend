@@ -1,10 +1,11 @@
 package com.org.mixtecatl.main.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Reservaciones")
+@Table(name = "reservaciones")
 public class Reservaciones {
 
     @Id
@@ -12,30 +13,35 @@ public class Reservaciones {
     @Column(name = "idReservaciones", unique = true, nullable = false)
     private Long idReservaciones;
 
-    @Column(name = "Fecha_Reservacion", nullable = false)
+    @Column(name = "fechaReservacion", nullable = false)
     private LocalDateTime fechaReservacion;
 
-    @Column(name = "Nombre_Solicitante", nullable = false)
+    @Column(name = "nombreSolicitante", nullable = false)
     private String nombreSolicitante;
 
-    @Column(name = "Apellido_Solicitante", nullable = false)
+    @Column(name = "apellidoSolicitante", nullable = false)
     private String apellidoSolicitante;
 
-    @Column(name = "Mesas_idMesas", nullable = false)
-    private Integer mesasIdMesas;
+    @JsonBackReference
+    @OneToOne
+    @JoinColumn(name = "idMesas") //referencia de la FK
+    private Mesas mesas;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", nullable = true) //referencia de la FK
+    private Usuario usuario;
 
     public Reservaciones() {
     }
 
     public Reservaciones(LocalDateTime fechaReservacion,
                          String nombreSolicitante,
-                         String apellidoSolicitante,
-                         Integer mesasIdMesas) {
+                         String apellidoSolicitante) {
 
         this.fechaReservacion = fechaReservacion;
         this.nombreSolicitante = nombreSolicitante;
         this.apellidoSolicitante = apellidoSolicitante;
-        this.mesasIdMesas = mesasIdMesas;
     }
     //getters y setters
 
@@ -71,11 +77,30 @@ public class Reservaciones {
         this.apellidoSolicitante = apellidoSolicitante;
     }
 
-    public Integer getMesasIdMesas() {
-        return mesasIdMesas;
+    public Mesas getMesa() {
+        return mesas;
     }
 
-    public void setMesasIdMesas(Integer mesasIdMesas) {
-        this.mesasIdMesas = mesasIdMesas;
+    public void setMesa(Mesas mesas) {
+        this.mesas = mesas;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservaciones{" +
+                "idReservaciones=" + idReservaciones +
+                ", fechaReservacion=" + fechaReservacion +
+                ", nombreSolicitante='" + nombreSolicitante + '\'' +
+                ", apellidoSolicitante='" + apellidoSolicitante + '\'' +
+                ", mesa=" + mesas +
+                '}';
     }
 }

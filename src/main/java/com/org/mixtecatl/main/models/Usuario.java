@@ -1,9 +1,13 @@
 package com.org.mixtecatl.main.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id
@@ -18,10 +22,18 @@ public class Usuario {
     private String correo;
 
     @Column(name = "password", nullable = false)
-    private String password;
+    private String contrasena;
 
     @Column(name = "telefono", nullable = false)
     private String telefono;
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private List<Reservaciones> reservaciones = new ArrayList<>();
 
     public Usuario(){}// Constructor vacío
 
@@ -30,7 +42,7 @@ public class Usuario {
 
         this.nombre = nombre;
         this.correo = correo;
-        this.password = password;
+        this.contrasena = password;
         this.telefono = telefono;
 
     }// Constructor Usuario
@@ -60,11 +72,11 @@ public class Usuario {
     }// setCorreo
 
     public String getPassword() {
-        return password;
+        return contrasena;
     }// getPassword
 
     public void setPassword(String password) {
-        this.password = password;
+        this.contrasena = password;
     }// setPassword
 
     public String getTelefono() {
@@ -75,6 +87,22 @@ public class Usuario {
         this.telefono = telefono;
     }// setTelefono
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    public List<Reservaciones> getReservaciones() {
+        return reservaciones;
+    }
+
+    public void setReservaciones(List<Reservaciones> reservaciones) {
+        this.reservaciones = reservaciones;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -82,6 +110,8 @@ public class Usuario {
                 ", nombre='" + nombre + '\'' +
                 ", correo='" + correo + '\'' +
                 ", telefono='" + telefono + '\'' +
+                ", pedidos=" + pedidos +
+                ", reservaciones=" + reservaciones +
                 '}';
-    }// toString
+    }
 }// Class Usuario

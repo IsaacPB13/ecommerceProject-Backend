@@ -1,5 +1,7 @@
 package com.org.mixtecatl.main.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -23,22 +25,22 @@ public class DetallePedido {
         @Column(name = "subtotal", nullable = false)
         private BigDecimal subtotal;
 
-        @Column(name = "platillo_idPlatillo", nullable = false)
-        private Long platilloIdPlatillo;
+        @JsonBackReference
+        @OneToOne
+        @JoinColumn(name="idPlatillo") //referencia de la FK
+        private Platillo platillo;
 
-        @Column(name = "pedidos_idPedido", nullable = false)
-        private Long pedidosIdPedido;
+        @JsonBackReference
+        @OneToOne
+        @JoinColumn(name="idPedido") //referencia de la FK
+        private Pedido pedido;
 
-
-
-        public DetallePedido(Integer cantidad, BigDecimal precioUnitario, BigDecimal subtotal,
-                             Long platilloIdPlatillo, Long pedidosIdPedido) {
+        public DetallePedido(Integer cantidad, BigDecimal precioUnitario, BigDecimal subtotal) {
             this.cantidad = cantidad;
             this.precioUnitario = precioUnitario;
             this.subtotal = subtotal;
-            this.platilloIdPlatillo = platilloIdPlatillo;
-            this.pedidosIdPedido = pedidosIdPedido;
         }//constructorDetallePedido
+
 
         public DetallePedido() {
         }//requerimiento JPA (Constructor vacío)
@@ -75,21 +77,22 @@ public class DetallePedido {
             this.subtotal = subtotal;
         }//setSubtotal
 
-        public Long getPlatilloIdPlatillo() {
-            return platilloIdPlatillo;
-        }//getPlatilloIdPlatillo
+        public Platillo getPlatillo() {
+            return platillo;
+        }
 
-        public void setPlatilloIdPlatillo(Long platilloIdPlatillo) {
-            this.platilloIdPlatillo = platilloIdPlatillo;
-        }//setPlatilloIdPlatillo
+        public Pedido getPedido() {
+            return pedido;
+        }
 
-        public Long getPedidosIdPedido() {
-            return pedidosIdPedido;
-        }//getPedidosIdPedido
 
-        public void setPedidosIdPedido(Long pedidosIdPedido) {
-            this.pedidosIdPedido = pedidosIdPedido;
-        }//setPedidosIdPedido
+        public void setPlatillo(Platillo platillo) {
+            this.platillo = platillo;
+        }
+
+        public void setPedido(Pedido pedido) {
+            this.pedido = pedido;
+        }
 
         @Override
         public String toString() {
@@ -98,9 +101,9 @@ public class DetallePedido {
                     ", cantidad=" + cantidad +
                     ", precioUnitario=" + precioUnitario +
                     ", subtotal=" + subtotal +
-                    ", platilloIdPlatillo=" + platilloIdPlatillo +
-                    ", pedidosIdPedido=" + pedidosIdPedido +
+                    ", platillo=" + platillo +
+                    ", pedido=" + pedido +
                     '}';
-        }//toString
+    }
 }// class DetallePedido
 

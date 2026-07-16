@@ -1,9 +1,10 @@
 package com.org.mixtecatl.main.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="platillo")
+@Table(name="platillos")
 public class Platillo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +23,18 @@ public class Platillo {
     @Column(name="imagen", nullable = false)
     private String imagen;
 
+    @JsonManagedReference
+    @OneToOne(mappedBy = "platillos")
+    private DetallePedido detallePedido;
 
     public Platillo(){}
+
+    public Platillo(String nombrePlatillo, String categoria, Double precio, String imagen) {
+        this.nombrePlatillo = nombrePlatillo;
+        this.categoria = categoria;
+        this.imagen = imagen;
+        this.precio = precio;
+    }
 
     public String getNombrePlatillo() {
         return nombrePlatillo;
@@ -65,12 +76,12 @@ public class Platillo {
         this.precio = precio;
     }
 
+    public DetallePedido getDetallePedido() {
+        return detallePedido;
+    }
 
-    public Platillo(String nombrePlatillo, String categoria, Double precio, String imagen) {
-        this.nombrePlatillo = nombrePlatillo;
-        this.categoria = categoria;
-        this.imagen = imagen;
-        this.precio = precio;
+    public void setDetallePedido(DetallePedido detallePedido) {
+        this.detallePedido = detallePedido;
     }
 
     @java.lang.Override

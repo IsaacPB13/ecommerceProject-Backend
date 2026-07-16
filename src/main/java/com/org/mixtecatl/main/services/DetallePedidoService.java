@@ -42,8 +42,6 @@ public class DetallePedidoService {
             detallePedido.setCantidad(detallePedidoActualizado.getCantidad());
             detallePedido.setPrecioUnitario(detallePedidoActualizado.getPrecioUnitario());
             detallePedido.setSubtotal(detallePedidoActualizado.getSubtotal());
-            detallePedido.setPlatilloIdPlatillo(detallePedidoActualizado.getPlatilloIdPlatillo());
-            detallePedido.setPedidosIdPedido(detallePedidoActualizado.getPedidosIdPedido());
 
             return detallePedidoRepository.save(detallePedido);
         }
