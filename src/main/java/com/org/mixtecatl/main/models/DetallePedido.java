@@ -26,12 +26,12 @@ public class DetallePedido {
         private BigDecimal subtotal;
 
         @JsonBackReference
-        @OneToOne
+        @ManyToOne
         @JoinColumn(name="idPlatillo") //referencia de la FK
         private Platillo platillo;
 
         @JsonBackReference
-        @OneToOne
+        @ManyToOne
         @JoinColumn(name="idPedido") //referencia de la FK
         private Pedido pedido;
 

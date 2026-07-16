@@ -13,15 +13,15 @@ public class Mesas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idMesas", unique = true, nullable = false)
-    private Long idMesas;
+    @Column(name = "idMesa", unique = true, nullable = false)
+    private Long idMesa;
 
     @Column(name = "disponibilidad", nullable = false)
     private boolean disponibilidad;
 
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "Mesas") //uno a muchos, indica que aqui inicia la relación
-    private Reservaciones reservacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mesa") //uno a muchos, indica que aqui inicia la relación
+    private List<Reservaciones> reservaciones;
 
     public Mesas(){}
 
@@ -38,20 +38,24 @@ public class Mesas {
         this.disponibilidad = disponibilidad;
     }
 
-    public Long getIdMesas() {
-        return idMesas;
+    public Long getIdMesa() {
+        return idMesa;
     }
 
-    public Reservaciones getReservacion() {
-        return reservacion;
+    public List<Reservaciones> getReservaciones() {
+        return reservaciones;
+    }
+
+    public void setReservaciones(List<Reservaciones> reservaciones) {
+        this.reservaciones = reservaciones;
     }
 
     @Override
     public String toString() {
         return "Mesas{" +
-                "idMesas=" + idMesas +
+                "idMesa=" + idMesa +
                 ", disponibilidad=" + disponibilidad +
-                ", reservaciones=" + reservacion +
+                ", reservaciones=" + reservaciones +
                 '}';
     }
 }

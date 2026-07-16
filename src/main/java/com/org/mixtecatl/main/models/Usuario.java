@@ -28,11 +28,11 @@ public class Usuario {
     private String telefono;
 
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Pedido> pedidos = new ArrayList<>();
 
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Reservaciones> reservaciones = new ArrayList<>();
 
     public Usuario(){}// Constructor vacío

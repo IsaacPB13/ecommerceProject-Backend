@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table (name= "pedidos")
@@ -20,8 +21,8 @@ public class Pedido {
     private String estadoPedido;
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "pedidos")
-    private DetallePedido detallePedido;
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<DetallePedido> detalles;
 
     @JsonBackReference
     @ManyToOne //relacion uno a muchos invertida
@@ -59,16 +60,16 @@ public class Pedido {
         this.estadoPedido = estadoPedido;
     }//setEstadoPedido
 
-    public DetallePedido getDetallePedido() {
-        return detallePedido;
+    public List<DetallePedido> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<DetallePedido> detalles) {
+        this.detalles = detalles;
     }
 
     public Usuario getUsuario() {
         return usuario;
-    }
-
-    public void setDetallePedido(DetallePedido detallePedido) {
-        this.detallePedido = detallePedido;
     }
 
     public void setUsuario(Usuario usuario) {
@@ -81,7 +82,7 @@ public class Pedido {
                 "idPedido=" + idPedido +
                 ", fechaSolicitud=" + fechaSolicitud +
                 ", estadoPedido='" + estadoPedido + '\'' +
-                ", detallePedido=" + detallePedido +
+                ", detallePedido=" + detalles +
                 ", usuario=" + usuario +
                 '}';
     }

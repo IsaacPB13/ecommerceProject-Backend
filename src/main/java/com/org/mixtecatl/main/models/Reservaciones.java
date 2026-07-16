@@ -10,8 +10,8 @@ public class Reservaciones {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idReservaciones", unique = true, nullable = false)
-    private Long idReservaciones;
+    @Column(name = "idReservacion", unique = true, nullable = false)
+    private Long idReservacion;
 
     @Column(name = "fechaReservacion", nullable = false)
     private LocalDateTime fechaReservacion;
@@ -23,9 +23,9 @@ public class Reservaciones {
     private String apellidoSolicitante;
 
     @JsonBackReference
-    @OneToOne
-    @JoinColumn(name = "idMesas") //referencia de la FK
-    private Mesas mesas;
+    @ManyToOne
+    @JoinColumn(name = "idMesa") //referencia de la FK
+    private Mesas mesa;
 
     @JsonBackReference
     @ManyToOne
@@ -45,12 +45,12 @@ public class Reservaciones {
     }
     //getters y setters
 
-    public Long getIdReservaciones() {
-        return idReservaciones;
+    public Long getIdReservacion() {
+        return idReservacion;
     }
 
-    public void setIdReservaciones(Long idReservaciones) {
-        this.idReservaciones = idReservaciones;
+    public void setIdReservaciones(Long idReservacion) {
+        this.idReservacion = idReservacion;
     }
 
     public LocalDateTime getFechaReservacion() {
@@ -78,11 +78,11 @@ public class Reservaciones {
     }
 
     public Mesas getMesa() {
-        return mesas;
+        return mesa;
     }
 
-    public void setMesa(Mesas mesas) {
-        this.mesas = mesas;
+    public void setMesa(Mesas mesa) {
+        this.mesa = mesa;
     }
 
     public Usuario getUsuario() {
@@ -96,11 +96,11 @@ public class Reservaciones {
     @Override
     public String toString() {
         return "Reservaciones{" +
-                "idReservaciones=" + idReservaciones +
+                "idReservaciones=" + idReservacion +
                 ", fechaReservacion=" + fechaReservacion +
                 ", nombreSolicitante='" + nombreSolicitante + '\'' +
                 ", apellidoSolicitante='" + apellidoSolicitante + '\'' +
-                ", mesa=" + mesas +
+                ", mesa=" + mesa +
                 '}';
     }
 }

@@ -3,6 +3,8 @@ package com.org.mixtecatl.main.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="platillos")
 public class Platillo {
@@ -24,8 +26,8 @@ public class Platillo {
     private String imagen;
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "platillos")
-    private DetallePedido detallePedido;
+    @OneToMany(mappedBy = "platillo")
+    private List<DetallePedido> detalles;
 
     public Platillo(){}
 
@@ -76,22 +78,23 @@ public class Platillo {
         this.precio = precio;
     }
 
-    public DetallePedido getDetallePedido() {
-        return detallePedido;
+    public List<DetallePedido> getDetalles() {
+        return detalles;
     }
 
-    public void setDetallePedido(DetallePedido detallePedido) {
-        this.detallePedido = detallePedido;
+    public void setDetalles(List<DetallePedido> detalles) {
+        this.detalles = detalles;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Platillo{" +
                 "idPlatillo=" + idPlatillo +
                 ", nombrePlatillo='" + nombrePlatillo + '\'' +
                 ", categoria='" + categoria + '\'' +
-                ", imagen='" + imagen + '\'' +
                 ", precio=" + precio +
+                ", imagen='" + imagen + '\'' +
+                ", detalles=" + detalles +
                 '}';
     }
 }
