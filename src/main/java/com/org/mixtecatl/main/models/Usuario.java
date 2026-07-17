@@ -27,11 +27,11 @@ public class Usuario {
     @Column(name = "telefono", nullable = false)
     private String telefono;
 
-    @JsonManagedReference
+    @JsonManagedReference("usuario-pedido")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Pedido> pedidos = new ArrayList<>();
 
-    @JsonManagedReference
+    @JsonManagedReference("usuario-reservaciones")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Reservaciones> reservaciones = new ArrayList<>();
 

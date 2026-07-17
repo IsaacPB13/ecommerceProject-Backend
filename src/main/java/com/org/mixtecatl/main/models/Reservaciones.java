@@ -22,12 +22,12 @@ public class Reservaciones {
     @Column(name = "apellidoSolicitante", nullable = false)
     private String apellidoSolicitante;
 
-    @JsonBackReference
+    @JsonBackReference("reservacion-mesa")
     @ManyToOne
     @JoinColumn(name = "idMesa") //referencia de la FK
     private Mesas mesa;
 
-    @JsonBackReference
+    @JsonBackReference("usuario-reservaciones")
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = true) //referencia de la FK
     private Usuario usuario;

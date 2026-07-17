@@ -25,10 +25,10 @@ public class Platillo {
     @Column(name="imagen", nullable = false)
     private String imagen;
 
-    @Column(name="imagen", nullable = false)
+    @Column(name="descripcion", nullable = false)
     private String descripcion;
 
-    @JsonManagedReference
+    @JsonManagedReference("platillo-detalle")
     @OneToMany(mappedBy = "platillo")
     private List<DetallePedido> detalles;
 

@@ -20,11 +20,11 @@ public class Pedido {
     @Column(name = "estadoPedido",nullable = false)
     private String estadoPedido;
 
-    @JsonManagedReference
+    @JsonManagedReference("pedido-detalle")
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<DetallePedido> detalles;
 
-    @JsonBackReference
+    @JsonBackReference("usuario-pedido")
     @ManyToOne //relacion uno a muchos invertida
     @JoinColumn(name="idUsuario") //referencia de la FK
     private Usuario usuario;

@@ -25,12 +25,12 @@ public class DetallePedido {
         @Column(name = "subtotal", nullable = false)
         private BigDecimal subtotal;
 
-        @JsonBackReference
+        @JsonBackReference("platillo-detalle")
         @ManyToOne
         @JoinColumn(name="idPlatillo") //referencia de la FK
         private Platillo platillo;
 
-        @JsonBackReference
+        @JsonBackReference("pedido-detalle")
         @ManyToOne
         @JoinColumn(name="idPedido") //referencia de la FK
         private Pedido pedido;

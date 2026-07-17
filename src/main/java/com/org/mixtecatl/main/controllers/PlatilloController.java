@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path="/mixapi/platillos/")// http://localhost:8080/api/platillos/
+@CrossOrigin(origins = "*")
 public class PlatilloController {
 
     private final PlatilloService platilloService;

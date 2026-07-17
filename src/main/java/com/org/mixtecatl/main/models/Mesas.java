@@ -19,7 +19,7 @@ public class Mesas {
     @Column(name = "disponibilidad", nullable = false)
     private boolean disponibilidad;
 
-    @JsonManagedReference
+    @JsonManagedReference("reservacion-mesa")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "mesa") //uno a muchos, indica que aqui inicia la relación
     private List<Reservaciones> reservaciones;
 

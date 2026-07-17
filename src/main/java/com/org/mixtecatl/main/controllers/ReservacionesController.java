@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/mixapi/reservaciones/")
+@CrossOrigin(origins = "*")
 public class ReservacionesController {
 
     private final ReservacionesService reservacionesService;
