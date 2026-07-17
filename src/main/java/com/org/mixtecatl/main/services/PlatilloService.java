@@ -26,7 +26,7 @@ public class PlatilloService {
         return platilloRepository.save(platillo);
     }//crearPlatillo
 
-    public Platillo actualizarPlatillo(Long idPlatillo, String nombrePlatillo, String categoria, Double precio, String imagen) {
+    public Platillo actualizarPlatillo(Long idPlatillo, String nombrePlatillo, String categoria, Double precio, String imagen, String descripcion) {
         Platillo platillo = null;
 
         if( platilloRepository.existsById(idPlatillo) ){
@@ -36,6 +36,7 @@ public class PlatilloService {
             if(categoria != null) platillo.setCategoria(categoria);
             if(imagen != null) platillo.setImagen(imagen);
             if(precio != null) platillo.setPrecio(precio);
+            if(descripcion != null) platillo.setDescripcion(descripcion);
 
             platilloRepository.save(platillo);
         }

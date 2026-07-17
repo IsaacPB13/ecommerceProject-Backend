@@ -43,12 +43,13 @@ public class PlatilloController {
     }
 
 
-    @PutMapping(path="/{idPlatillo}")// http://localhost:8080/mixapi/productos/{idPlatillo}
+    @PutMapping(path="{idPlatillo}")// http://localhost:8080/mixapi/productos/{idPlatillo}
     public Platillo actualizarPlatillo(@PathVariable("idPlatillo") Long id,
                                        @RequestParam(value = "nombrePlatillo", required = false)String nombrePlatillo,
                                        @RequestParam(value = "categoria", required = false)String categoria,
                                        @RequestParam(value = "imagen", required = false)String imagen,
-                                       @RequestParam(value = "precio", required = false)Double precio){
-        return platilloService.actualizarPlatillo(id, nombrePlatillo, categoria, precio, imagen);
+                                       @RequestParam(value = "precio", required = false)Double precio,
+                                       @RequestParam(value = "descripcion", required = false)String descripcion){
+        return platilloService.actualizarPlatillo(id, nombrePlatillo, categoria, precio, imagen, descripcion);
     }//actualizarPlatillo
 }

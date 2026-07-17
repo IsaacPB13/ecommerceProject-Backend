@@ -14,7 +14,7 @@ public class Reservaciones {
     private Long idReservacion;
 
     @Column(name = "fechaReservacion", nullable = false)
-    private LocalDateTime fechaReservacion;
+    private String fechaReservacion;
 
     @Column(name = "nombreSolicitante", nullable = false)
     private String nombreSolicitante;
@@ -35,7 +35,7 @@ public class Reservaciones {
     public Reservaciones() {
     }
 
-    public Reservaciones(LocalDateTime fechaReservacion,
+    public Reservaciones(String fechaReservacion,
                          String nombreSolicitante,
                          String apellidoSolicitante) {
 
@@ -53,11 +53,11 @@ public class Reservaciones {
         this.idReservacion = idReservacion;
     }
 
-    public LocalDateTime getFechaReservacion() {
+    public String getFechaReservacion() {
         return fechaReservacion;
     }
 
-    public void setFechaReservacion(LocalDateTime fechaReservacion) {
+    public void setFechaReservacion(String fechaReservacion) {
         this.fechaReservacion = fechaReservacion;
     }
 
