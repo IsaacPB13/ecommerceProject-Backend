@@ -3,6 +3,7 @@ package com.org.mixtecatl.main.controllers;
 import com.org.mixtecatl.main.models.Platillo;
 import com.org.mixtecatl.main.services.PlatilloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,10 +37,12 @@ public class PlatilloController {
         return platilloService.getPlatillo(id);
     }
 
-    @DeleteMapping(path="{idPlatillo}")
-    public Platillo deletePlatillo(@PathVariable("idPlatillo") Long id){
+    @DeleteMapping("{idPlatillo}")
+    public ResponseEntity<Void> deletePlatillo(@PathVariable Long idPlatillo) {
 
-        return platilloService.deletePlatillo(id);
+        platilloService.deletePlatillo(idPlatillo);
+
+        return ResponseEntity.noContent().build();
     }
 
 

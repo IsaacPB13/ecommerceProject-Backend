@@ -49,15 +49,13 @@ public class PlatilloService {
                 orElseThrow( () -> new IllegalArgumentException("El platillo con el id ["+id+"] no existe") );
     }
 
-    public Platillo deletePlatillo(Long id) {
+    public void deletePlatillo(Long id) {
 
-        Platillo platillo = null;
-        if(platilloRepository.existsById(id)){
-
-            platillo = platilloRepository.findById(id).get();
-            platilloRepository.deleteById(id);
+        if (!platilloRepository.existsById(id)) {
+            throw new RuntimeException("Platillo not found");
         }
 
-        return platillo;
+        platilloRepository.deleteById(id);
+
     }
 }
